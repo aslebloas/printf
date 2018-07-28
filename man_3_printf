@@ -1,0 +1,23 @@
+.TH PRINTF 3 "18 July 2018" "0.01" "_printf man page"
+.SH NAME
+.B _printf
+- format and print data
+.SH SYNOPSIS
+int printf(const char *
+.I format
+, ...);
+.SH DESCRIPTION
+_printf produces output according to a format. The function printf() write output to stdout, the standard output stream;
+.IP
+.P
+.TP
+.B Return Value
+Upon successful return, _printf returns the number of characters printed (excluding  the  null  byte used to end output to strings).
+If an output error is encountered, a negative value is returned.
+
+.SH SEE ALSO
+
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Anne-Sophie Le Bloas, Cuong Tran
