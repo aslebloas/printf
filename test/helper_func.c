@@ -19,10 +19,9 @@ int _putchar(char c)
  *
  * Return: an int
  */
-
 int print_str(char *str)
 {
-	int i;
+	int i = 0;
 
 	while (str[i] != '\0')
 	{
