@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 #include "holberton.h"
 
 /**
@@ -25,7 +26,7 @@ int print_str(char *str)
 
 	while (str[i] != '\0')
 	{
-		_putchar(str[i] + '0');
+		_putchar(str[i]);
 		i++;
 	}
 	return (i);
