@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include "holberton.h"
 
 /**
  * _putchar - writes the character c to stdout
@@ -10,4 +11,23 @@
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
+}
+
+/**
+ * print_str - prints a string
+ * @str: string argument
+ *
+ * Return: an int
+ */
+
+int print_str(char *str)
+{
+	int i;
+
+	while (str[i] != '\0')
+	{
+		_putchar(str[i] + '0')
+		i++;
+	}
+	return (i);
 }
