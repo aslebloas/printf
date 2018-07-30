@@ -28,6 +28,16 @@ int print_str(va_list ap)
 	char *str;
 
 	str = va_arg(ap, char *);
+	if (str == NULL)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (6);
+	}
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
