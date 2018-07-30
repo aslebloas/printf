@@ -12,7 +12,7 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0;
+	int i = 0, j;
 	int count = 0;
 	p array[] = {
 		{'s', print_str},
