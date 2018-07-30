@@ -14,12 +14,12 @@ int _printf(const char *format, ...)
 {
 	int i = 0, j = 0;
 	int count = 0;
-	p array[5] = {
+	p array[] = {
 		{'s', print_str},
 		{'c', print_char},
 		{'%', print_per},
 		{'i', print_int},
-		{'d', print_int}
+		{'d', print_int},
 	};
 	va_list ap;
 
