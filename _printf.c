@@ -14,13 +14,17 @@ int _printf(const char *format, ...)
 {
 	int i = 0, j = 0;
 	int count = 0;
-	char *str;
+	p array[] = {
+		{'s', print_str},
+		{'c', print_char},
+		{'%', print_per},
+		{'i', print_int},
+		{'d', print_int},
+	};
 	va_list ap;
 
-	/* Return -1 if first arg is null */
 	if (format == NULL)
 		return (-1);
-
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
@@ -31,24 +35,17 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			switch (format[i + 1])
+			j = 0;
+			while (j < 5)
 			{
-			case 'c':
-				_putchar(va_arg(ap, int));
-				count++;
-				break;
-			case 's':
-				str = va_arg(ap, char *);
-				count += print_str(str);
-				break;
-			case '%':
-				_putchar('%');
-				count++;
-				break;
-			default:
-				break;
+				if (format[i + 1] == array[j].format)
+				{
+					count += array[j].f(ap);
+					i++;
+					j = 5;
+				}
+				j++;
 			}
-		i++;
 		}
 		i++;
 	}
