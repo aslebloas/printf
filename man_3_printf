@@ -3,18 +3,51 @@
 .B _printf
 - format and print data
 .SH SYNOPSIS
-int printf(const char *
+int _printf(const char *
 .I format
 , ...);
 .SH DESCRIPTION
-_printf produces output according to a format. The function printf() write output to stdout, the standard output stream;
+_printf produces output according to a format. The function printf() write output to stdout, the standard output stream, using format string to control the appearance of the output. The prototype for function end with ... symbol (called elipsis), which indicates a variable number of addtional arguments.
 .IP
 .P
 .TP
 .B Return Value
 Upon successful return, _printf returns the number of characters printed (excluding  the  null  byte used to end output to strings).
 If an output error is encountered, a negative value is returned.
-
+.IP
+.P
+.TP
+.B Conversion Specifications
+_printf function require a format string containing ordinary characters and/or conversion specifications. Ordinary characters are printed as is; conversion specifications describe how the remaining arguments are to be converted to character form for display.
+.IP
+.P
+.TP
+A conversion specification consist of the % character, followed by as many as file distinct items:
+|%|#0|12|.5|L|g|
+.IP
+#0:
+.IP
+12: minimum field width
+.IP
+.5: precision
+.IP
+L: Length modifier
+.IP
+g: Conversion specifier
+.IP
+.P
+.TP
+.B Conversion specifier
+.IP
+.P
+.TP
+c: Display an int value as an unsigned character
+.IP
+s: Write the character pointed to by the argument. Stops writing when the number of bytes specified by the precision (if present) is reached or a null character is encounted.
+.IP
+%: Write the character %.
+.IP
+d, i: Converts an int value to decimal form.
 .SH SEE ALSO
 
 .SH BUGS
