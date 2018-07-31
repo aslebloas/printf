@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "holberton.h"
 
 /**
@@ -157,5 +158,49 @@ int print_hex_num(va_list ap)
 		count++;
 	}
 	free(str_num);
+	return (count);
+}
+
+/**
+ * print_binary - prints unsigned int arg in binary
+ * @ap: argument
+ *
+ * Return: number of character printed
+ */
+int print_binary(va_list ap)
+{
+	unsigned int num;
+	int count = 0;
+	unsigned int ui = UINT_MAX;
+
+	num = va_arg(ap, unsigned int);
+
+	/* if n is 0 or 1 print 0 or 1 */
+	if (num < 2)
+		count = num;
+
+	/* if n is greater than 1 find the max number of binary digits */
+	while (num - ui <= 0)
+	{
+		ui /= 2;
+	}
+
+	/* print num to binary */
+	while (ui != 0)
+	{
+		if (num - ui > 0)
+		{
+			_putchar('1');
+			num -= ui;
+			count++;
+		}
+		else
+		{
+			_putchar('0');
+			count++;
+		}
+		ui /= 2;
+	}
+
 	return (count);
 }

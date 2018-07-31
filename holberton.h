@@ -1,7 +1,6 @@
 #ifndef _HOLBERTON_H
 #define _HOLBERTON_H
 
-int _printf(const char *format, ...);
 int _putchar(char c);
 int print_str(va_list ap);
 int print_per(void);
@@ -12,6 +11,7 @@ int print_octal_num(va_list ap);
 int print_HEX_num(va_list ap);
 int print_hex_num(va_list ap);
 int print_binary(va_list ap);
+int _printf(const char *format, ...);
 
 /**
  * struct _printf_ - Store data of format and function pointer
