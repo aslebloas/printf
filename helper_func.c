@@ -28,6 +28,16 @@ int print_str(va_list ap)
 	char *str;
 
 	str = va_arg(ap, char *);
+	if (!str)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (6);
+	}
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
@@ -57,6 +67,8 @@ int print_char(va_list ap)
 {
 	char c = va_arg(ap, int);
 
+	if (!c)
+		return (-1);
 	_putchar(c);
 	return (1);
 }
@@ -74,6 +86,8 @@ int print_int(va_list ap)
 	int num = va_arg(ap, int);
 	int count = 0;
 
+	if (!num)
+		return (-1);
 	while (num / max_digit_int == 0)
 		max_digit_int /= 10;
 	while (max_digit_int > 0)
