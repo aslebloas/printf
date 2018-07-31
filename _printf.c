@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 		{"o", print_octal_num},
 		{"X", print_HEX_num},
 		{"x", print_hex_num},
-		/* {NULL, NULL} */
+		{NULL, NULL}
 	};
 	va_list ap;
 
@@ -46,10 +46,13 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 9)
+			while (j < 10)
 			{
-				/* if (array[j].format == NULL) */
-				/*	return (-1); */
+				if (array[j].format == NULL)
+				{
+					_putchar('%');
+					count++;
+				}
 				if (!format[i + 1])
 					return (-1);
 				if (format[i + 1] == *(array[j].format))
@@ -58,13 +61,13 @@ int _printf(const char *format, ...)
 					countf = array[j].f(ap);
 					count += countf;
 					i++;
-					j = 9;
+					j = 10;
 				}
 				j++;
 			}
 			/* if format[i + 1] is not in array, print it */
-			if (countf == 0)
-				_putchar(format[i]);
+			/*if (countf == 0)
+			  _putchar(format[i]);*/
 		}
 		i++;
 	}
