@@ -48,8 +48,9 @@ int _printf(const char *format, ...)
 					countf = array[j].f(ap);
 					count += countf;
 					i++;
-					j = 5;
 				}
+				if (!format[i + 1])
+					return (-1);
 				j++;
 			}
 
