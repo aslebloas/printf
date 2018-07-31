@@ -49,6 +49,7 @@ int _printf(const char *format, ...)
 					count += countf;
 					i++;
 				}
+/* if after % is null, return error */
 				if (!format[i + 1])
 					return (-1);
 				j++;
