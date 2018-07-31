@@ -1,56 +1,92 @@
-.TH PRINTF 3 "18 July 2018" "0.01" "_printf man page"
+.TH _PRINTF 3 "JULY 30 2018" "0.01" "_printf man page"
 .SH NAME
 .B _printf
-- format and print data
+\- formatted output conversion
+
 .SH SYNOPSIS
+#include "holberton.h"
+
 int _printf(const char *
 .I format
 , ...);
+
 .SH DESCRIPTION
-_printf produces output according to a format. The function printf() write output to stdout, the standard output stream, using format string to control the appearance of the output. The prototype for function end with ... symbol (called elipsis), which indicates a variable number of addtional arguments.
+_printf  produces output according to a format. The function _printf() write output to stdout ,
+the standard output stream, using format string to control the appearance of  the  output.  The
+prototype  for function end with ... symbol (called elipsis), which indicates a variable number
+of addtional arguments.
+
+_printf writes the output under the control of a format string that  specifies  how  subsequent
+optional arguments, accessed using the macros from stdarg(3) are converted for output.
+
 .IP
 .P
 .TP
 .B Return Value
-Upon successful return, _printf returns the number of characters printed (excluding  the  null  byte used to end output to strings).
-If an output error is encountered, a negative value is returned.
+Upon  successful return, _printf returns the number of characters printed (excluding the
+null byte used to end output to strings).
+
+If an output error is encountered, -1 is returned.
+
+.IP
+.P
+.TP
+.B Format of the format string
+The format string is composed of zero or more directives: ordinary characters  (not  %),
+which  are copied unchanged to the output stream; and conversion specifications, each of
+which results  in fetching zero or more subsequent arguments. Each conversion specifica‐
+tion is introduced by the character %, and ends with a conversion specifier.
+
+The arguments must correspond properly (after type promotion) with the conversion speci‐
+fier.  By default, the arguments are used in the order given, where each  '*'  and  each
+conversion  specifier  asks  for the next argument (and it is an error if insufficiently
+many arguments are given: _printf will return -1).
+
+Thus,
+
+           printf("Hello");
+
+and
+
+           printf("%s", "Hello");
+
+are equivalent.
+
 .IP
 .P
 .TP
 .B Conversion Specifications
-_printf function require a format string containing ordinary characters and/or conversion specifications. Ordinary characters are printed as is; conversion specifications describe how the remaining arguments are to be converted to character form for display.
-.IP
-.P
-.TP
-A conversion specification consist of the % character, followed by as many as file distinct items:
-|%|#0|12|.5|L|g|
-.IP
-#0:
-.IP
-12: minimum field width
-.IP
-.5: precision
-.IP
-L: Length modifier
-.IP
-g: Conversion specifier
-.IP
-.P
-.TP
-.B Conversion specifier
-.IP
-.P
-.TP
-c: Display an int value as an unsigned character
-.IP
-s: Write the character pointed to by the argument. Stops writing when the number of bytes specified by the precision (if present) is reached or a null character is encounted.
-.IP
-%: Write the character %.
-.IP
-d, i: Converts an int value to decimal form.
-.SH SEE ALSO
+A character that sepecifies the type of conversion to be applied. The conversion  specifiers
+and their meaning are:
+
+.IP c	  
+The int argument is converted to a char and the resulting character is written.
+
+.IP s      
+The  const  char  *  argument  is expected to be a pointer to an array of character type
+(pointer to a string).  Character from the array are written up to  a  terminating  null byte.
+
+.IP %      
+A  '%'  is  written.  No argument is converted. The complete conversion specification is '%%'.
+
+.IP "d, i"   
+The int argument is converted to a decimal notation. The  precision  gives  the  minimum number of digits that must appear.
+
+.SH EXAMPLE
+To print a string:
+         #include "holberton.h"
+         _printf("Hello, world\n");
+
+or:
+         #include "holberton.h"
+         _printf("%s\n", "Hello, world!");
+
+To print an integer:
+         #include "holberton.h"
+         _printf("%d", 123456);
 
 .SH BUGS
 No known bugs.
+
 .SH AUTHOR
 Anne-Sophie Le Bloas, Cuong Tran
