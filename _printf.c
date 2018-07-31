@@ -12,8 +12,8 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0, j;
-	int count = 0;
+	int i = 0, j = 0;
+	int count = 0, countf = 0;
 	p array[] = {
 		{'s', print_str},
 		{'c', print_char},
@@ -40,8 +40,19 @@ int _printf(const char *format, ...)
 			{
 				if (format[i + 1] == array[j].format)
 				{
-					count += array[j].f(ap);
+					countf = array[j].f(ap);
+					if (countf == -1)
+					{
+						va_end(ap);
+						return (-1);
+					}
+					count += countf;
 					i++;
+					j = 5;
+				}
+				else
+				{
+					count += print_per();
 					j = 5;
 				}
 				j++;
