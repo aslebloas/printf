@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 5)
+			while (j < 6)
 			{
 				if (format[i + 1] == *(array[j].format))
 				{
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 					countf = array[j].f(ap);
 					count += countf;
 					i++;
-					j = 5;
+					j = 6;
 				}
 				j++;
 			}
