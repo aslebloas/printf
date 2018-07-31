@@ -20,8 +20,7 @@ int _printf(const char *format, ...)
 		{'c', print_char},
 		{'%', print_per},
 		{'i', print_int},
-		{'d', print_int},
-		{NULL, NULL}
+		{'d', print_int}
 	};
 	va_list ap;
 
@@ -42,24 +41,21 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 6)
+			while (j < 5)
 			{
-				if (!array[j].format)
-					return (-1);
-				if (!format[i + 1])
-					return (-1);
 				if (format[i + 1] == array[j].format)
 				{
+					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
 					count += countf;
 					i++;
+					j = 5;
 				}
+				j++;
 			}
-			/*
-			 * if format[i + 1] is not in array, print it
-			 * if (countf == 0)
-			 * count += print_per();
-			*/
+			/* if format[i + 1] is not in array, print it */
+			if (countf == 0)
+				return (-1);
 		}
 		i++;
 	}
