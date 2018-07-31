@@ -169,7 +169,7 @@ int print_hex_num(va_list ap)
  */
 int print_binary(va_list ap)
 {
-	unsigned int num;
+	unsigned int num, i;
 	int count = 0;
 	unsigned int ui = UINT_MAX;
 
@@ -179,16 +179,30 @@ int print_binary(va_list ap)
 	if (num < 2)
 		count = num;
 
+	/* if num is the max, print 32 times 1 */
+	i = 0;
+	if (num == ui)
+	{
+		while (i < 31)
+		{
+			_putchar('1');
+			i++;
+			count++;
+		}
+		return (count);
+	}
+	ui = (UINT_MAX / 2) + 1;
 	/* if n is greater than 1 find the max number of binary digits */
-	while (num - ui <= 0)
+	while (num < ui)
 	{
 		ui /= 2;
 	}
 
+	printf("I'm UI: %u\n", ui);
 	/* print num to binary */
 	while (ui != 0)
 	{
-		if (num - ui > 0)
+		if (num >= ui)
 		{
 			_putchar('1');
 			num -= ui;
