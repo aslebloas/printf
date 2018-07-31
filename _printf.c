@@ -12,6 +12,7 @@
 
 int _printf(const char *format, ...)
 {
+	/* Variables declaration */
 	int i = 0, j = 0;
 	int count = 0, countf = 0;
 	p array[] = {
@@ -23,8 +24,10 @@ int _printf(const char *format, ...)
 	};
 	va_list ap;
 
+	/* Return NULL if format is null */
 	if (format == NULL)
 		return (-1);
+
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
@@ -35,28 +38,30 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
+			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			while (j < 5)
 			{
 				if (format[i + 1] == array[j].format)
 				{
 					countf = array[j].f(ap);
+
 					if (countf == -1)
 					{
 						va_end(ap);
+
 						return (-1);
 					}
 					count += countf;
 					i++;
 					j = 5;
 				}
-				else
-				{
-					count += print_per();
-					j = 5;
-				}
 				j++;
 			}
+
+			/* if format[i + 1] is not in array, print it */
+			if (countf == 0)
+				count += print_per();
 		}
 		i++;
 	}
