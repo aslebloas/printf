@@ -46,6 +46,8 @@ int _printf(const char *format, ...)
 			{
 				if (array[j].format == NULL)
 					return (-1);
+				if (!format[i + 1])
+					return (-1);
 				if (format[i + 1] == *(array[j].format))
 				{
 					/* Call the func corresponding to char */
