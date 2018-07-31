@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	{
 		k = i + 1;
-		if (format[i] == '%' && format[i + 1] == ' ')
+		if (format[i] == '%' && format[k] == ' ')
 		{
 			while (format[k] == ' ')
 				k++;
@@ -56,8 +56,7 @@ int _printf(const char *format, ...)
 			{
 				if (!format[k])
 				{
-					_putchar('%');
-					count++;
+					return (-1);
 				}
 				if (array[j].format == NULL)
 				{
@@ -70,7 +69,7 @@ int _printf(const char *format, ...)
 					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
 					count += countf;
-					i++;
+					i = k;
 					j = 10;
 				}
 				j++;
