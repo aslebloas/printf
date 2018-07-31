@@ -40,18 +40,12 @@ int _printf(const char *format, ...)
 		{
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
+			countf = 0;
 			while (j < 5)
 			{
 				if (format[i + 1] == array[j].format)
 				{
 					countf = array[j].f(ap);
-
-					if (countf == -1)
-					{
-						va_end(ap);
-
-						return (-1);
-					}
 					count += countf;
 					i++;
 					j = 5;
