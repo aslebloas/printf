@@ -21,6 +21,7 @@ int _printf(const char *format, ...)
 		{'%', print_per},
 		{'i', print_int},
 		{'d', print_int},
+		{NULL, NULL}
 	};
 	va_list ap;
 
@@ -41,22 +42,23 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 5)
+			while (j < 6)
 			{
+				if (!array[j].format)
+					return (-1);
+				if (!format[i + 1])
+                                        return (-1);
 				if (format[i + 1] == array[j].format)
 				{
 					countf = array[j].f(ap);
 					count += countf;
 					i++;
 				}
-				if (!format[i + 1])
-					return (-1);
-				j++;
 			}
 
-			/* if format[i + 1] is not in array, print it */
+			/* if format[i + 1] is not in array, print it
 			if (countf == 0)
-				count += print_per();
+			count += print_per(); */
 		}
 		i++;
 	}
