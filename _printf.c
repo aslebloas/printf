@@ -16,11 +16,12 @@ int _printf(const char *format, ...)
 	int i = 0, j = 0;
 	int count = 0, countf = 0;
 	p array[] = {
-		{'s', print_str},
-		{'c', print_char},
-		{'%', print_per},
-		{'i', print_int},
-		{'d', print_int}
+		{"s", print_str},
+		{"c", print_char},
+		{"%", print_per},
+		{"i", print_int},
+		{"d", print_int},
+		{NULL, NULL}
 	};
 	va_list ap;
 
@@ -43,7 +44,7 @@ int _printf(const char *format, ...)
 			countf = 0;
 			while (j < 5)
 			{
-				if (format[i + 1] == array[j].format)
+				if (format[i + 1] == *(array[j].format))
 				{
 					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
@@ -54,8 +55,8 @@ int _printf(const char *format, ...)
 				j++;
 			}
 			/* if format[i + 1] is not in array, print it */
-			if (countf == 0)
-				return (-1);
+			/* if (countf == 0) */
+			/*	return (-1);*/
 		}
 		i++;
 	}
