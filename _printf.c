@@ -53,8 +53,8 @@ int _printf(const char *format, ...)
 					_putchar('%');
 					count++;
 				}
-				if (!format[i + 1])
-					return (-1);
+				/* if (!format[i + 1]) */
+				/*	return (-1);*/
 				if (format[i + 1] == *(array[j].format))
 				{
 					/* Call the func corresponding to char */
@@ -66,8 +66,8 @@ int _printf(const char *format, ...)
 				j++;
 			}
 			/* if format[i + 1] is not in array, print it */
-			/*if (countf == 0)
-			  _putchar(format[i]);*/
+			/*if (countf == 0)*/
+			/*  _putchar(format[i]);*/
 		}
 		i++;
 	}
