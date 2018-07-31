@@ -13,7 +13,7 @@
 int _printf(const char *format, ...)
 {
 	/* Variables declaration */
-	int i = 0, j = 0;
+	int i = 0, j = 0, k = 0;
 	int count = 0, countf = 0;
 	p array[] = {
 		{"s", print_str},
@@ -36,6 +36,12 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
+		k = i + 1;
+		if (format[i] == '%' && format[i + 1] == ' ')
+		{
+			while (format[k] == ' ')
+				k++;
+		}
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
@@ -48,14 +54,18 @@ int _printf(const char *format, ...)
 			countf = 0;
 			while (j < 10)
 			{
-				if (array[j].format == NULL)
+				if (!format[k])
 				{
 					_putchar('%');
 					count++;
 				}
-				/* if (!format[i + 1]) */
-				/*	return (-1);*/
-				if (format[i + 1] == *(array[j].format))
+				if (array[j].format == NULL)
+				{
+/* printf % itself when no format matching */
+					_putchar('%');
+					count++;
+				}
+				else if (format[k] == *(array[j].format))
 				{
 					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
@@ -65,9 +75,6 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
-			/* if format[i + 1] is not in array, print it */
-			/*if (countf == 0)*/
-			/*  _putchar(format[i]);*/
 		}
 		i++;
 	}
