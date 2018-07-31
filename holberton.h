@@ -17,7 +17,7 @@ int print_int(va_list ap);
  */
 typedef struct _printf_
 {
-	char format;
+	char *format;
 	int (*f)();
 } p;
 
