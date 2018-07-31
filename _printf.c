@@ -21,10 +21,10 @@ int _printf(const char *format, ...)
 		{"%", print_per},
 		{"i", print_int},
 		{"d", print_int},
-		{"u", print_unsigned_int};
-		{"o", print_octal_num};
-		{"X", print_HEX_num};
-		{"x", print_hex_num};
+		{"u", print_unsigned_int},
+		{"o", print_octal_num},
+		{"X", print_HEX_num},
+		{"x", print_hex_num},
 		{NULL, NULL}
 	};
 	va_list ap;
