@@ -177,7 +177,10 @@ int print_binary(va_list ap)
 
 	/* if n is 0 or 1 print 0 or 1 */
 	if (num < 2)
-		count = num;
+	{
+		putchar(num + '0');
+		return (count + 1);
+	}
 
 	/* if num is the max, print 32 times 1 */
 	i = 0;
@@ -198,7 +201,6 @@ int print_binary(va_list ap)
 		ui /= 2;
 	}
 
-	printf("I'm UI: %u\n", ui);
 	/* print num to binary */
 	while (ui != 0)
 	{
