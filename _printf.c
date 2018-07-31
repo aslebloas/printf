@@ -20,6 +20,7 @@ int _printf(const char *format, ...)
 		{"c", print_char},
 		{"%", print_per},
 		{"i", print_int},
+		{"b", print_binary},
 		{"d", print_int},
 		{"u", print_unsigned_int},
 		{"o", print_octal_num},
@@ -37,11 +38,13 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	{
 		k = i + 1;
+/* loop through the format to skip whitespcase after %*/
 		if (format[i] == '%' && format[k] == ' ')
 		{
 			while (format[k] == ' ')
 				k++;
 		}
+/* printf ordinary characater */
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
@@ -52,15 +55,16 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 10)
+			while (j < 11)
 			{
+/*if after % is null character, return main.c without printing anything*/
 				if (!format[k])
 				{
 					return (-1);
 				}
+/* printf % itself when no format matching */
 				if (array[j].format == NULL)
 				{
-/* printf % itself when no format matching */
 					_putchar('%');
 					count++;
 				}
@@ -69,8 +73,9 @@ int _printf(const char *format, ...)
 					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
 					count += countf;
+/*after call function, currunt position inf format is k*/
 					i = k;
-					j = 10;
+					j = 11;
 				}
 				j++;
 			}
