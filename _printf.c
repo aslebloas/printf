@@ -44,6 +44,8 @@ int _printf(const char *format, ...)
 			countf = 0;
 			while (j < 6)
 			{
+				if (array[j].format == NULL)
+					return (-1);
 				if (format[i + 1] == *(array[j].format))
 				{
 					/* Call the func corresponding to char */
