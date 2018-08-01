@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
 		{"o", print_octal_num},
 		{"X", print_HEX_num},
 		{"x", print_hex_num},
+		{"p", print_add},
 		{"S", print_HEX_ASCII_num},
 		{NULL, NULL}
 	};
@@ -56,7 +57,7 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 12)
+			while (j < 13)
 			{
 /*if after % is null character, return main.c without printing anything*/
 				if (!format[k])
@@ -76,7 +77,7 @@ int _printf(const char *format, ...)
 					count += countf;
 /*after call function, currunt position inf format is k*/
 					i = k;
-					j = 12;
+					j = 13;
 				}
 				j++;
 			}
