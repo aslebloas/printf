@@ -12,6 +12,7 @@ int print_HEX_num(va_list ap);
 int print_hex_num(va_list ap);
 int print_binary(va_list ap);
 int _printf(const char *format, ...);
+int print_HEX_ASCII_num(va_list ap);
 
 /**
  * struct _printf_ - Store data of format and function pointer

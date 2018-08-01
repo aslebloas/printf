@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
 		{"o", print_octal_num},
 		{"X", print_HEX_num},
 		{"x", print_hex_num},
+		{"S", print_HEX_ASCII_num},
 		{NULL, NULL}
 	};
 	va_list ap;
@@ -55,7 +56,7 @@ int _printf(const char *format, ...)
 			/* Loop through array to check if format[i + 1] exists */
 			j = 0;
 			countf = 0;
-			while (j < 11)
+			while (j < 12)
 			{
 /*if after % is null character, return main.c without printing anything*/
 				if (!format[k])
@@ -75,7 +76,7 @@ int _printf(const char *format, ...)
 					count += countf;
 /*after call function, currunt position inf format is k*/
 					i = k;
-					j = 11;
+					j = 12;
 				}
 				j++;
 			}
