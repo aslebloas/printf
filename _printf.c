@@ -39,14 +39,15 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i] != '\0')
 	{
+		/* loop through the format to skip whitespcase after %*/
 		k = i + 1;
-/* loop through the format to skip whitespcase after %*/
 		if (format[i] == '%' && format[k] == ' ')
 		{
 			while (format[k] == ' ')
 				k++;
 		}
-/* printf ordinary characater */
+
+		/* printf ordinary characater */
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
@@ -54,17 +55,17 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			/* Loop through array to check if format[i + 1] exists */
+			/* Loop through array to check if format[i+1] exists */
 			j = 0;
 			countf = 0;
 			while (j < 13)
 			{
-/*if after % is null character, return main.c without printing anything*/
+				/* if after % is null char return wo printing*/
 				if (!format[k])
 				{
 					return (-1);
 				}
-/* printf % itself when no format matching */
+				/* printf % itself when no format matching */
 				if (array[j].format == NULL)
 				{
 					_putchar('%');
@@ -72,10 +73,9 @@ int _printf(const char *format, ...)
 				}
 				else if (format[k] == *(array[j].format))
 				{
-					/* Call the func corresponding to char */
 					countf = array[j].f(ap);
 					count += countf;
-/*after call function, currunt position inf format is k*/
+					/* after f call, i = k */
 					i = k;
 					j = 13;
 				}
@@ -84,6 +84,9 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
+
+	/* cleanup for an ap object */
 	va_end(ap);
+
 	return (count);
 }
