@@ -29,12 +29,7 @@ int print_HEX_ASCII_num(va_list ap)
 	}
 	while (str[i] != '\0')
 	{
-		if (str[i] >= 32)
-		{
-			_putchar(str[i]);
-			count++;
-		}
-		else
+		if (str[i] < 32)
 		{
 			_putchar('\\');
 			_putchar('x');
@@ -45,6 +40,11 @@ int print_HEX_ASCII_num(va_list ap)
 				count++;
 			}
 			_printf("%X", str[i]);
+			count++;
+		}
+		else if (str[i] >= 32)
+		{
+			_putchar(str[i]);
 			count++;
 		}
 		i++;
@@ -61,14 +61,21 @@ int print_HEX_ASCII_num(va_list ap)
 int print_add(va_list ap)
 {
 	int temp_num = 0, i = 0;
-	long num = va_arg(ap, long);
+	unsigned long num = va_arg(ap, long);
 	int count = 0;
 	char *str_num;
 	char letter_array[6] = {'a', 'b', 'c', 'd', 'e', 'f'};
 
+	if (!num)
+	{
+		_putchar('(');
+		_putchar('n');
+		_putchar('i');
+		_putchar('l');
+		_putchar(')');
+		return (5);
+	}
 	str_num = malloc(sizeof(char) * 12);
-	if (str_num == NULL)
-		return (-1);
 	_putchar('0');
 	_putchar('x');
 	count = 2;

@@ -169,24 +169,30 @@ int print_hex_num(va_list ap)
  */
 int print_binary(va_list ap)
 {
-	unsigned int num, i;
-	int count = 0;
-	unsigned int ui = UINT_MAX;
+	unsigned long num;
+	unsigned int i, count = 0, countd = 0;
+	unsigned long ui = UINT_MAX;
 
-	num = va_arg(ap, unsigned int);
+	num = va_arg(ap, unsigned long);
 
 	/* if n is 0 or 1 print 0 or 1 */
 	if (num < 2)
 	{
-		putchar(num + '0');
+		_putchar(num + '0');
 		return (count + 1);
 	}
 
 	/* if num is the max, print 32 times 1 */
 	i = 0;
+	while (ui > 0)
+	{
+		ui /= 10;
+		countd++;
+	}
+	countd--;
 	if (num == ui)
 	{
-		while (i < 31)
+		while (i < countd)
 		{
 			_putchar('1');
 			i++;
