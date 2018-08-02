@@ -169,11 +169,11 @@ int print_hex_num(va_list ap)
  */
 int print_binary(va_list ap)
 {
-	unsigned long num;
+	long num;
 	unsigned int i, count = 0, countd = 0;
-	unsigned long ui = UINT_MAX;
+	unsigned int ui = UINT_MAX;
 
-	num = va_arg(ap, unsigned long);
+	num = va_arg(ap, unsigned int);
 
 	/* if n is 0 or 1 print 0 or 1 */
 	if (num < 2)
