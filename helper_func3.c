@@ -75,6 +75,8 @@ int print_add(va_list ap)
 		return (5);
 	}
 	str_num = malloc(sizeof(char) * 16);
+	if (str_num == NULL)
+		return (0);
 	_putchar('0');
 	_putchar('x');
 	count = 2;
