@@ -29,7 +29,7 @@ int print_HEX_ASCII_num(va_list ap)
 	}
 	while (str[i] != '\0')
 	{
-		if (str[i] < 32)
+		if (str[i] < 32 || str[i] == 127)
 		{
 			_putchar('\\');
 			_putchar('x');
@@ -37,12 +37,11 @@ int print_HEX_ASCII_num(va_list ap)
 			if (str[i] < 16)
 			{
 				_putchar('0');
-				count++;
 			}
 			_printf("%X", str[i]);
-			count++;
+			count += 2;
 		}
-		else if (str[i] >= 32)
+		else
 		{
 			_putchar(str[i]);
 			count++;
